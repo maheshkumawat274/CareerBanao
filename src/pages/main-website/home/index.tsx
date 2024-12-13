@@ -5,6 +5,7 @@ import Section3 from "components/main-website/homePage/Section3";
 import Section4 from "components/main-website/homePage/Section4";
 import Section5 from "components/main-website/homePage/Section5";
 import Section6 from "components/main-website/homePage/Section6";
+import CollegeFound from "src/components/main-website/homePage/CollegeFound";
 import HomeFaq from "src/components/main-website/homePage/HomeFaq";
 import SliderYoutube from "src/components/main-website/homePage/SliderYoutube";
 import UnivercitiesLogoSlider from "src/components/main-website/homePage/UnivercitiesLogoSlider";
@@ -15,6 +16,7 @@ function HomePage() {
       <Section1 />
       <Section2 />
       <Section3 />
+      <CollegeFound/>
       <Section4 />
       <div className="mt-5"><UnivercitiesLogoSlider/></div>
       <Section5 />

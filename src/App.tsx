@@ -13,6 +13,7 @@ import { setMenulistData } from "./redux/navListSlice";
 import { getCurrentDate, getIPAddress } from "./utils/services";
 import Chatbot from "./components/chatbot/Chatbot";
 import WhatsAppBtn from "./components/whatsappbtn/WhatsAppBtn";
+import CollegeFoundRoutes from "./routes/CollegeFoundRoutes";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
@@ -54,6 +55,8 @@ function App() {
     })
   }, []);
 
+
+
   return loading ? (
     <Loader />
   ) : (
@@ -67,6 +70,11 @@ function App() {
         {
           protectedRoutes.map(({ path, protected: Protected, element: Element }, i) => (
             <Route path={path} element={<Protected Component={Element} />} key={i} />
+          ))
+        }
+        {
+          CollegeFoundRoutes.map(({ path, element: Element }, i) => (
+            <Route path={path} element={<Element/>} key={i} />
           ))
         }
       </Routes>
