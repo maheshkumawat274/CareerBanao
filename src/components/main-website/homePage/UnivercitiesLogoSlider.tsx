@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 interface CardProps {
   logoUrl: string; // Assuming the logo is an image
@@ -23,6 +24,31 @@ const Card: React.FC<CardProps> = ({ logoUrl }) => {
   );
 };
 
+// Custom Arrow Components
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="absolute bg-orange-400  top-1/2 right-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
+      onClick={onClick}
+    >
+      <BiChevronRight size={30} />
+    </div>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="absolute bg-orange-400  top-1/2 left-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
+      onClick={onClick}
+    >
+      <BiChevronLeft size={30}/>
+    </div>
+  );
+};
+
 const UnivercitiesLogoSlider: React.FC = () => {
   const cards = [
     { logoUrl: "./logo/Quantum_logo.png" },
@@ -39,28 +65,31 @@ const UnivercitiesLogoSlider: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
-    dots: false, // Enable dots
-    
+    dots: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: 3 },
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 4 },
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 640,
         settings: { slidesToShow: 1 },
-      }
+      },
     ],
   };
 
   return (
     <section className="py-10 bg-[#EDEDE9] relative">
-      <h2 className="text-center font-poppins text-3xl">Top Ranked Institutes & Universities</h2>
-      <div className="container mx-auto px-4">
+      <h2 className="text-center font-poppins text-3xl">
+        Top Ranked Institutes & Universities
+      </h2>
+      <div className="container mx-auto px-4 relative">
         <Slider {...sliderSettings}>
           {cards.map((card, index) => (
             <Card key={index} logoUrl={card.logoUrl} />

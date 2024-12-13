@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Import React Icons for arrows
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 interface VideoCardProps {
   videoUrl: string;
@@ -25,7 +25,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoUrl }) => {
 };
 
 const SliderYoutube: React.FC = () => {
-  const sliderRef = useRef<Slider | null>(null); // Create ref to access the Slider instance
+  const sliderRef = useRef<Slider | null>(null);
 
   const videos = [
     { videoUrl: "https://www.youtube.com/embed/Ako9mZC7uJE?si=gE6TORKwq7eFPFMh" },
@@ -43,16 +43,16 @@ const SliderYoutube: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
-    dots: false, // Removed dot navigation
-    nextArrow: <NextArrow />, // Custom next arrow
-    prevArrow: <PrevArrow />, // Custom prev arrow
+    dots: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024, // Tablet or smaller
+        breakpoint: 1024,
         settings: { slidesToShow: 2 },
       },
       {
-        breakpoint: 640, // Mobile
+        breakpoint: 640,
         settings: { slidesToShow: 1 },
       },
     ],
@@ -70,48 +70,30 @@ const SliderYoutube: React.FC = () => {
           ))}
         </Slider>
       </div>
-
-      {/* Footer buttons */}
-      {/* <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex justify-center w-full space-x-4">
-        <button
-          className="bg-orange-500 text-white p-3 rounded-full hover:bg-orange-600 transition duration-300"
-          onClick={() => sliderRef.current?.slickPrev()} // Trigger the slickPrev method
-        >
-          <FaArrowLeft size={24} />
-        </button>
-        <button
-          className="bg-orange-500 text-white p-3 rounded-full hover:bg-orange-400 transition duration-300"
-          onClick={() => sliderRef.current?.slickNext()} // Trigger the slickNext method
-        >
-          <FaArrowRight size={24} />
-        </button>
-      </div> */}
     </section>
   );
 };
-
+// Custom Arrow Components
 const NextArrow = (props: any) => {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div
-      className={`${className} text-gray-800 hover:text-gray-500 cursor-pointer`}
-      style={{ ...style, display: "block", right: "10px", zIndex: 50 }}
+      className="absolute bg-orange-400  top-1/2 right-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
       onClick={onClick}
     >
-      <FaArrowRight size={24} />
+      <BiChevronRight size={40} />
     </div>
   );
 };
 
 const PrevArrow = (props: any) => {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div
-      className={`${className} text-gray-800 hover:text-gray-500 cursor-pointer`}
-      style={{ ...style, display: "block", left: "10px", zIndex: 50 }}
+      className="absolute bg-orange-400   top-1/2 left-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
       onClick={onClick}
     >
-      <FaArrowLeft size={24} />
+      <BiChevronLeft size={40}/>
     </div>
   );
 };
