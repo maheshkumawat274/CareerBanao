@@ -33,9 +33,9 @@ const Footer = () => {
           <div className="footer-content">
             
             <div className="footer-content-column">
-              <div className="footer-logo">
-                <Link to={""} className="footer-logo-link">
-                  <span className="hidden-link-text">LOGO</span>
+              <div className="footer-logo flex gap-2">
+              <img src="./logo/Untitled design.png" className="h-[50px] mt-2"></img>
+                <Link to={"/"} className="footer-logo-link">
                   <h2 className="footer-logo text-white">CareerBanao</h2>
                 </Link>
               </div>

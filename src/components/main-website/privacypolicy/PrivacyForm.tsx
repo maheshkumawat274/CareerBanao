@@ -69,7 +69,7 @@ function PrivacyForm() {
 
 
     return (
-        <div className="Contact-for bg-[#e9ecff] mt-[5rem] py-[3rem]">
+        <div className="Contact-for bg-[#EDEDE9] mt-[5rem] py-[3rem]">
             <h2 className="font-normal m-0  text-[32px] text-center">Get in touch with our </h2>
             <h2 className="text-[32px] m-0 font-semibold text-center">expert counsellors</h2>
 

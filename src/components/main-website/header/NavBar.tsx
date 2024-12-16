@@ -100,7 +100,8 @@ const NavBar = () => {
     <div className="header relative">
       <div className={navbar ? "navbar navactive flex w-full px-[5rem] py-3 fixed z-[999]" : "navbar flex w-full px-[5rem] py-3 fixed z-[999]"}>
         <div className="navbar-left w-1/3 lg:w-[40%] flex items-center">
-          <div className="nav-logo-name text-[32px] font-semibold text-primaryNavText">
+          <div className=" flex gap-2 nav-logo-name text-[32px] font-semibold text-primaryNavText">
+            <img src="./logo/Untitled design.png" className="h-[50px]"></img>
             <Link className="text-primaryNavText" to={"/"}>
               CareerBanao
             </Link>

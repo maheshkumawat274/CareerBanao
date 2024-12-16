@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 interface CardProps {
   logoUrl: string; // Assuming the logo is an image
@@ -24,30 +23,6 @@ const Card: React.FC<CardProps> = ({ logoUrl }) => {
   );
 };
 
-// Custom Arrow Components
-const NextArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      className="absolute bg-orange-400  top-1/2 right-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
-      onClick={onClick}
-    >
-      <BiChevronRight size={30} />
-    </div>
-  );
-};
-
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      className="absolute bg-orange-400  top-1/2 left-4 transform -translate-y-1/2 text-3xl text-white hover:scale-125 hover:text-slate-300 transition-transform duration-300 cursor-pointer z-10"
-      onClick={onClick}
-    >
-      <BiChevronLeft size={30}/>
-    </div>
-  );
-};
 
 const UnivercitiesLogoSlider: React.FC = () => {
   const cards = [
@@ -65,9 +40,15 @@ const UnivercitiesLogoSlider: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
-    dots: false,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    dots: true,
+    customPaging: (_: number) => (
+          <button className="hover:bg-orange-600 transition-colors duration-300"></button>
+        ),
+        appendDots: (dots: React.ReactNode) => (
+          <div className="mt-4">
+            <ul className="flex justify-center">{dots}</ul>
+          </div>
+        ),
     responsive: [
       {
         breakpoint: 1024,
