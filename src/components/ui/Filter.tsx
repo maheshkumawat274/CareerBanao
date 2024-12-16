@@ -34,6 +34,8 @@ const Filter = ({
     <MyRow gutter={6} style={{ marginBottom: 10 }}>
       <FilterOutlined
         style={{ fontSize: 30, color: "grey", marginRight: 10 }}
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
       />
       {filterOptions.map((fil: filter) => (
         <FilterBadges

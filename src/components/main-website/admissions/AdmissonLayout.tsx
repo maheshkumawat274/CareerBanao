@@ -1,123 +1,286 @@
-import { Link } from "react-router-dom"
-import CardSkeleton from "ui/CardSkeleton"
-import { useDispatch, useSelector } from "react-redux"
-import no_data_found from "../../../assets/no_data.gif"
-import { setDefault, setGovernment, setPrivate } from "../../../redux/admissionCategorySlice"
-import defaultLogo from "../../../assets/defaultCardLogo.jpeg";
-import { useState } from "react"
+import CardSkeleton from "ui/CardSkeleton";
+import { useDispatch, useSelector } from "react-redux";
+import no_data_found from "../../../assets/no_data.gif";
+import {
+  setDefault,
+  setGovernment,
+  setPrivate,
+} from "../../../redux/admissionCategorySlice";
+import { useState } from "react";
 
+import { FunnelIcon } from "@heroicons/react/24/solid";
+import { MapIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import ExamCard from "./ExamCard";
 
+// import ExamCard from "components/main-website/admissions/ExamCard";
 
-const governBtn = "rounded-3xl text-sm py-[7px] px-[12px] "
-const privateBtn = "rounded-[1.76rem] text-sm py-[7px] px-[12px] "
+const governBtnBase =
+  "rounded-3xl text-sm py-[7px] px-[12px] w-full font-sans transition-all";
+const privateBtnBase =
+  "rounded-3xl text-sm py-[7px] px-[12px] w-full font-sans transition-all";
+
+const defaultBtnBase =
+  "text-gray-800 font-bold underline cursor-pointer transition-colors";
 
 type AdmissionLayoutType = {
-    data: AdmissionEngineeringDataType[];
-    loading: boolean;
-    category: string;
+  data: AdmissionEngineeringDataType[];
+  loading: boolean;
+  category: string;
+};
 
-}
+const states = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Delhi",
+];
 
+const cities: { [state: string]: string[] } = {
+  Assam: ["Guwahati", "Dibrugarh", "Silchar"],
+  Bihar: ["Patna", "Gaya", "Bhagalpur"],
+  Chhattisgarh: ["Raipur", "Bilaspur", "Durg"],
+  Goa: ["Panaji", "Margao", "Vasco da Gama"],
+  Gujarat: ["Ahmedabad", "Surat", "Vadodara"],
+  Haryana: ["Gurgaon", "Faridabad", "Panipat"],
+  "Himachal Pradesh": ["Shimla", "Manali", "Dharamshala"],
+  Jharkhand: ["Ranchi", "Jamshedpur", "Dhanbad"],
+  Karnataka: ["Bangalore", "Mysore", "Mangalore"],
+  Kerala: ["Thiruvananthapuram", "Kochi", "Kozhikode"],
+  "Madhya Pradesh": ["Bhopal", "Indore", "Gwalior"],
+  Maharashtra: ["Mumbai", "Pune", "Nagpur"],
+  Manipur: ["Imphal", "Thoubal", "Bishnupur"],
+  Meghalaya: ["Shillong", "Tura", "Nongpoh"],
+  Mizoram: ["Aizawl", "Lunglei", "Champhai"],
+  Nagaland: ["Kohima", "Dimapur", "Mokokchung"],
+  Odisha: ["Bhubaneswar", "Cuttack", "Rourkela"],
+  Punjab: ["Amritsar", "Ludhiana", "Jalandhar", "Ferozpur"],
+  Rajasthan: ["Jaipur", "Jodhpur", "Udaipur"],
+  Sikkim: ["Gangtok", "Namchi", "Pelling"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+  Telangana: ["Hyderabad", "Warangal", "Nizamabad"],
+  Tripura: ["Agartala", "Udaipur", "Dharmanagar"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Varanasi", "Noida", "Prayagraj"],
+  Uttarakhand: ["Dehradun", "Haridwar", "Rishikesh"],
+  "West Bengal": ["Kolkata", "Darjeeling", "Howrah"],
+  Delhi: ["New Delhi", "South Delhi", "East Delhi"],
+};
 
-function AdmissonLayout({ data, loading, category }: AdmissionLayoutType) {
-    const dispatch = useDispatch();
-    const [displayCount, setDisplayCount] = useState(10);
-    const filterCategory = useSelector((state: any) => state.admissionCategory);
-    let filterData = filterCategory.data
-    const handleLoadMore = () => {
-        setDisplayCount(displayCount + 10); // Increase the number of records to display by 10
-    };
+function AdmissionLayout({ data, loading, category }: AdmissionLayoutType) {
+  const dispatch = useDispatch();
+  const [displayCount, setDisplayCount] = useState(10);
+  const [selectedState, setSelectedState] = useState<string>("");
+  const [selectedCity, setSelectedCity] = useState<string>("");
 
-    if (filterCategory.private) {
-        if (filterCategory.data) {
-            filterData = filterData?.filter((item: any) => {
-                return item.college_category == "Private"
-            })
-            data = filterData
-        }
-    }
-    if (filterCategory.government) {
-        if (filterCategory.data) {
-            filterData = filterData?.filter((item: any) => {
-                return item.college_category == "Government"
-            })
-            data = filterData
-        }
-    }
+  const filterCategory = useSelector((state: any) => state.admissionCategory);
+  let filterData = filterCategory.data;
 
-    return (
-        <div className="admissonLayout relative font-popins">
-            <div className="layout-container min-h-[450px] w-full px-4 py-8 flex flex-col lg:flex-row gap-20 relative top-[80px] bg-[#edede9] ">
-                <div className="layout-container-left w-full lg:w-[22%] flex flex-col gap-5">
-                    <div className="flex justify-between bg-white p-[1rem] text-sm">
-                        <div>CATEGORY</div>
-                        <div onClick={() => { dispatch(setDefault()) }} className="underline cursor-pointer">DEFAULT</div>
-                    </div>
+  const handleLoadMore = () => {
+    setDisplayCount(displayCount + 10); // Increase the number of records to display by 10
+  };
 
-                    <div className="flex gap-4 lg:flex-col">
-                        <div><button onClick={() => { dispatch(setGovernment()) }} className={filterCategory.government ? governBtn + " bg-white text-hoverBtn" : governBtn + " bg-primaryBtn text-white"}>GOVERNMENT</button></div>
-                        <div><button onClick={() => { dispatch(setPrivate()) }} className={filterCategory.private ? privateBtn + " bg-white text-hoverBtn" : privateBtn + " bg-primaryBtn text-white"}>PRIVATE</button></div>
-                    </div>
-                </div>
-                <div className="layout-container-right pb-5 flex flex-col gap-5 w-full min-h-[50vh] lg:w-[78%]">
-                    {loading ? <CardSkeleton /> : data?.length > 0 ? <>
-                        {
-                            data.filter((item) => item.hide_record == "0" && item.delete_status != "1")
-                                .slice(0, displayCount)
-                                .map((item) => {
-                                    return (
-                                        <ExamCard data={item} category={category} key={item.id} />
-                                    );
-                                })}
-                    </> : <img src={no_data_found} className="w-full h-[50%] object-contain mix-blend-multiply" />
-                    }
-                    {
-                        displayCount < data?.filter((item)=> item.hide_record == "0" && item.delete_status != "1").length && (
-                            <div className="flex justify-center mt-4">
-                                <button onClick={handleLoadMore} className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
-                                    Load More
-                                </button>
-                            </div>
-                        )
-                    }
-                </div>
-            </div>
+  const handleResetFilters = () => {
+    dispatch(setDefault()); // Reset Redux filters
+    setSelectedState(""); // Clear selected state
+    setSelectedCity(""); // Clear selected city
+  };
 
-        </div>
-    )
-
-
-
-}
-
-export default AdmissonLayout
-
-type ExamCardType = {
-    data: AdmissionEngineeringDataType;
-    category: string
-}
-function ExamCard({ data, category }: ExamCardType) {
-    // const dispatch = useDispatch()
-    let collegeLogo = data.college_logo;
-  
-
-    return (
-        <div className="exam-card w-full flex gap-[3%] bg-white p-[1rem]">
-            <div className="exam-img w-[20%] lg:w-[10%] flex justify-center items-start">
-                <div className="lg:w-[60px] w-[50px] h-[60px] rounded-full flex justify-center items-center">
-                    <img src={collegeLogo.match(/\.(jpeg|jpg|gif|png)$/) != null ? collegeLogo : defaultLogo} className="w-full h-full rounded-full" alt="college logo" />
-                </div>
-            </div>
-            <div className="exam-name flex flex-col lg:flex-row w-[85%]">
-                <div className="w-full lg:w-[70%]">
-                    <p className="text-[16px]">{data.college_name}</p>
-                    <p className="text-[12px] text-[#808080] line-clamp-3 pr-3">{data.college_address}</p>
-                    <p className="text-[#808080] text-sm mt-5">{data.Last_date}</p>
-                </div>
-                <div className="exam-apply w-full lg:w-[30%] lg:flex lg:items-end mt-2">
-                    <Link to={`/admissions/${category}/apply/${data.college_name}`}><button className="px-10 rounded-3xl py-2 lg:py-3 bg-primaryBtn hover:bg-hoverBtn text-white lg:font-semibold">APPLY NOW</button></Link>
-                </div>
-            </div>
-        </div>
+  // Filter by category
+  if (filterCategory.private) {
+    filterData = filterData.filter(
+      (item: any) => item.college_category === "Private"
     );
+    data = filterData;
+  }
+
+  if (filterCategory.government) {
+    filterData = filterData.filter(
+      (item: any) => item.college_category === "Government"
+    );
+    data = filterData;
+  }
+
+  // Filter by State or City
+  if (selectedState) {
+    const stateCities = cities[selectedState] || [];
+
+    filterData = filterData.filter((item: any) => {
+      const address = item.college_address?.toLowerCase().trim();
+
+      const isInState = stateCities.some((city: string) =>
+        address.includes(city.toLowerCase().trim())
+      );
+
+      const isInCity = selectedCity
+        ? address.includes(selectedCity.toLowerCase().trim())
+        : true;
+
+      return isInState && isInCity;
+    });
+
+    data = filterData;
+  }
+
+  return (
+    <div
+      className="admissionLayout relative font-popins"
+      style={{ backgroundColor: "rgb(237, 237, 233)" }} // Updated background color
+    >
+      <div className="layout-container min-h-[450px] w-full px-4 py-8 flex flex-col lg:flex-row gap-20 relative top-[80px]">
+        {/* Left Filter Section */}
+        <div className="layout-container-left w-full lg:w-[15%] flex flex-col gap-5">
+          {/* Category Section */}
+          <div className="flex justify-between bg-white p-[1rem] text-sm rounded-lg shadow">
+            <div className="flex items-center gap-2">
+              <FunnelIcon className="h-5 w-5 text-hoverBtn" />
+              <span className="text-gray-800 font-bold font-sans">CATEGORY</span>
+            </div>
+            <div
+              onClick={handleResetFilters}
+              className={`${defaultBtnBase} ${
+                filterCategory.default
+                  ? "text-orange-400 cursor-default"
+                  : "hover:text-hoverBtn cursor-pointer"
+              }`}
+            >
+              Default
+            </div>
+          </div>
+
+          {/* Category Buttons */}
+          <div className="flex gap-4 lg:flex-col">
+            <button
+              onClick={() => dispatch(setGovernment())}
+              className={`${governBtnBase} ${
+                filterCategory.government
+                  ? "bg-white text-orange-500 border-2 border-orange-500"
+                  : "bg-orange-500 text-white"
+              }`}
+            >
+              GOVERNMENT
+            </button>
+            <button
+              onClick={() => dispatch(setPrivate())}
+              className={`${privateBtnBase} ${
+                filterCategory.private
+                  ? "bg-white text-orange-500 border-2 border-orange-500"
+                  : "bg-orange-500 text-white"
+              }`}
+            >
+              PRIVATE
+            </button>
+          </div>
+
+          {/* Dropdown for States */}
+          <div className="dropdown mt-4">
+            <label htmlFor="states" className="block text-sm font-semibold">
+              <MapIcon className="h-5 w-5 inline-block text-orange-400 mr-2" />
+              Select State
+            </label>
+            <select
+              id="states"
+              value={selectedState}
+              onChange={(e) => {
+                setSelectedState(e.target.value);
+                setSelectedCity(""); // Reset city selection when state changes
+              }}
+              className="mt-2 block w-full rounded-lg border border-gray-300 bg-white p-2 text-black focus:outline-none"
+            >
+              <option value="">-- Select State --</option>
+              {states.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Dropdown for Cities */}
+          <div className="dropdown mt-4">
+            <label htmlFor="cities" className="block text-sm font-semibold">
+              <MapPinIcon className="h-5 w-5 inline-block text-orange-400 mr-2" />
+              Select City
+            </label>
+            <select
+              id="cities"
+              value={selectedCity}
+              onChange={(e) => setSelectedCity(e.target.value)}
+              className="mt-2 block w-full rounded-lg border border-gray-300 bg-white p-2 text-black focus:outline-none"
+              disabled={!selectedState}
+            >
+              <option value="">-- Select City --</option>
+              {selectedState &&
+                cities[selectedState as keyof typeof cities]?.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Right Content Section */}
+        <div className="layout-container-right pb-5 flex flex-col gap-6 w-full min-h-[50vh] lg:w-[78%]">
+          {loading ? (
+            Array.from({ length: displayCount }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))
+          ) : data?.length > 0 ? (
+            data.slice(0, displayCount).map((item, index) => (
+              <ExamCard
+                key={index}
+                data={item}
+                category={category}
+                isLoading={false}
+              />
+            ))
+          ) : (
+            <img
+              src={no_data_found}
+              className="w-full h-[50%] object-contain mix-blend-multiply"
+              alt="No Data Found"
+            />
+          )}
+
+          {/* Load More Button */}
+          {data?.length > displayCount && (
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={handleLoadMore}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-all"
+              >
+                Load More
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default AdmissionLayout;

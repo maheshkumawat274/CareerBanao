@@ -7,8 +7,8 @@ const Course10th = () => {
 
   // Array of education levels
   const educationLevels = [
-    { label: "Polytechnic", path: "/budget" },
-    { label: "Other", path: "/budget" }
+    { label: "Polytechnic", path: "/budget10th" },
+    { label: "Other", path: "/budget10th" }
   ];
 
   // Handle button click to set selected education level

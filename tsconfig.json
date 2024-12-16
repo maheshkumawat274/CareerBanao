@@ -7,9 +7,9 @@
     "skipLibCheck": true,
     "allowJs": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    /* Standard Node.js resolution */
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -21,6 +21,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
@@ -31,7 +34,7 @@
       "ui/*": ["src/components/ui/*"],
       "features/*": ["src/components/features/*"],
       "hooks/*": ["src/hooks/*"],
-      "api/*": ["src/api/*"],
+      "api/*": ["src/api/*"]
     }
   },
   "include": ["src"],

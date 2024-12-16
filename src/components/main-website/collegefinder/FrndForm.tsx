@@ -48,10 +48,10 @@ const FrndForm = () => {
 
   return (
     <div className="bg-[#EDEDE9] font-poppins p-10 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-800 mb-6">Just One Step Away From Your Exclusive College List!</h1>
+      <h1 className="text-4xl font-bold text-gray-800 mb-6">Enter Your Friend Details!</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl mt-5">
         <div>
-          <label className="block text-gray-700 font-bold mb-1">Full Name</label>
+          <label className="block text-gray-700 font-bold mb-1">Full Name </label>
           <input
             type="text"
             name="fullName"
@@ -60,7 +60,7 @@ const FrndForm = () => {
             className={`border ${
               errors.fullName ? "border-red-500" : "border-gray-300"
             } w-full p-2 rounded-lg`}
-            placeholder="Enter your full name"
+            placeholder="Enter your Friend full name"
           />
           {errors.fullName && <p className="text-red-500 text-sm">Full name is required</p>}
         </div>
@@ -87,7 +87,7 @@ const FrndForm = () => {
             className={`border ${
               errors.email ? "border-red-500" : "border-gray-300"
             } w-full p-2 rounded-lg`}
-            placeholder="Enter your email"
+            placeholder="Enter your Friend email"
           />
           {errors.email && <p className="text-red-500 text-sm">Invalid email address</p>}
         </div>
@@ -101,42 +101,11 @@ const FrndForm = () => {
             className={`border ${
               errors.mobileNumber ? "border-red-500" : "border-gray-300"
             } w-full p-2 rounded-lg`}
-            placeholder="Enter your mobile number"
+            placeholder="Enter your Friend mobile number"
           />
           {errors.mobileNumber && <p className="text-red-500 text-sm">Enter a valid 10-digit number</p>}
         </div>
-        {/* <div>
-          <label className="block text-gray-700 font-bold mb-1">Choose Program</label>
-          <input
-            type="text"
-            name="program"
-            value={formData.program}
-            onChange={handleInputChange}
-            className={`border ${
-              errors.program ? "border-red-500" : "border-gray-300"
-            } w-full p-2 rounded-lg`}
-            placeholder="Enter your preferred program"
-          />
-          {errors.program && <p className="text-red-500 text-sm">Program is required</p>}
-        </div>
-        <div>
-          <label className="block text-gray-700 font-bold mb-1">State</label>
-          <select
-            name="state"
-            value={formData.state}
-            onChange={handleInputChange}
-            className={`border ${
-              errors.state ? "border-red-500" : "border-gray-300"
-            } w-full p-2 rounded-lg`}
-          >
-            <option value="">Select your state</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Bangalore">Bangalore</option>
-            <option value="Chennai">Chennai</option>
-          </select>
-          {errors.state && <p className="text-red-500 text-sm">State selection is required</p>}
-        </div> */}
+        
       </form>
       <div className="mt-5 flex gap-2">
         <Link to="/Reff">

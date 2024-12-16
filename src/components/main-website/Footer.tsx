@@ -50,11 +50,15 @@ const Footer = () => {
                         marginRight: "3px",
                         marginTop: "13px",
                       }}
+                      onPointerEnterCapture={() => {}}
+                      onPointerLeaveCapture={() => {}}
                     />
                     <Link to={""}>+91 8750092628</Link>
                   </li>
                   <li className="menu-item menu-item-type-post_type menu-item-object-product">
-                    {<EnvironmentOutlined style={{ fontSize: "18px" }} />}
+                    {<EnvironmentOutlined style={{ fontSize: "18px" }}
+                     onPointerEnterCapture={() => {}}
+                     onPointerLeaveCapture={() => {}} />}
                     <Link to="#">
                       Spring Meadows Business Park, Sector 63, Noida, Uttar
                       Pradesh 201301 <br />
@@ -65,6 +69,8 @@ const Footer = () => {
                     {
                       <MailOutlined
                         style={{ fontSize: "18px", marginTop: "13px" }}
+                        onPointerEnterCapture={() => {}}
+                        onPointerLeaveCapture={() => {}}
                       />
                     }
                     <Link to="mailto:careerbanao20@gmail.com">
@@ -181,28 +187,39 @@ const Footer = () => {
                 to="https://www.linkedin.com/company/careerbanao1/"
                 target="_blank"
               >
-                <LinkedinOutlined className="footer-icons" />
+                <LinkedinOutlined className="footer-icons"  
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}} />
               </Link>
               <Link
                 className="footer-social-link twitter"
                 to="https://www.instagram.com/careerbanao20/"
                 target="_blank"
               >
-                <InstagramOutlined className="footer-icons" />
+                <InstagramOutlined className="footer-icons" 
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}} 
+                />
               </Link>
               <Link
                 className="footer-social-link youtube"
                 to=" https://youtube.com/c/CareerBanao"
                 target="_blank"
               >
-                <YoutubeOutlined className="footer-icons" />
+                <YoutubeOutlined className="footer-icons"  
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}} 
+                />
               </Link>
               <Link
                 className="footer-social-link github"
                 to="https://www.facebook.com/careerbanao/"
                 target="_blank"
               >
-                <FacebookOutlined className="footer-icons fb-icon" />
+                <FacebookOutlined className="footer-icons fb-icon" 
+                   onPointerEnterCapture={() => {}}
+                   onPointerLeaveCapture={() => {}}
+                />
               </Link>
             </div>
           </div>

@@ -7,10 +7,10 @@ const DiplomaHolder = () => {
 
   // Array of education levels
   const educationLevels = [
-    { label: "Engineering", path: "/budget" },
-    { label: "Management", path: "/budget" },
-    { label: "Medical", path: "/budget" },
-    { label: "Other", path: "/budget" }
+    { label: "Engineering", path: "/diplomabudget" },
+    { label: "Management", path: "/diplomabudget" },
+    { label: "Medical", path: "/diplomabudget" },
+    { label: "Other", path: "/diplomabudget" }
   ];
 
   // Handle button click to set selected education level

@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-interface BudgetProps {
-  budgetRanges?: string[]; // Optional prop for customizable budget ranges
-  nextPath?: string; 
-  prevPath?: string;      // Optional prop to customize the "NEXT" button path
+interface BudgetDiplomaProps {
+  BudgetDiplomaRanges?: string[]; // Optional prop for customizable BudgetDiploma ranges
+     // Optional prop to customize the "NEXT" button path
 }
 
-const Budget = ({ budgetRanges, nextPath = "/emi", prevPath = '/mode' }: BudgetProps) => {
-  const [selectedBudget, setSelectedBudget] = useState<string | null>(null);
+const BudgetDiploma = ({ BudgetDiplomaRanges }: BudgetDiplomaProps) => {
+  const [selectedBudgetDiploma, setSelectedBudgetDiploma] = useState<string | null>(null);
   const [canProceed, setCanProceed] = useState<boolean>(false);
 
-  // Default budget ranges if no prop is passed
-  const defaultBudgetRanges = [
+  // Default BudgetDiploma ranges if no prop is passed
+  const defaultBudgetDiplomaRanges = [
     "Less than 1 Lacs",
     "1 Lacs - 2.5 Lacs",
     "2.5 Lacs - 4.2 Lacs",
@@ -21,11 +20,11 @@ const Budget = ({ budgetRanges, nextPath = "/emi", prevPath = '/mode' }: BudgetP
   ];
 
   // Use the prop if provided, otherwise use the default ranges
-  const ranges = budgetRanges || defaultBudgetRanges;
+  const ranges = BudgetDiplomaRanges || defaultBudgetDiplomaRanges;
 
-  // Handle button click to set selected Budget range
-  const handleSelection = (Budget: string) => {
-    setSelectedBudget(Budget);
+  // Handle button click to set selected BudgetDiploma range
+  const handleSelection = (BudgetDiploma: string) => {
+    setSelectedBudgetDiploma(BudgetDiploma);
     setCanProceed(true); // Enable the "Next" button when an option is selected
   };
 
@@ -35,25 +34,25 @@ const Budget = ({ budgetRanges, nextPath = "/emi", prevPath = '/mode' }: BudgetP
         How Much Are You Planning To Spend?
       </h1>
       <div className="flex flex-wrap justify-center gap-4 mb-6 mt-5">
-        {ranges.map((Budget, index) => (
+        {ranges.map((BudgetDiploma, index) => (
           <button
             key={index}
-            onClick={() => handleSelection(Budget)}
+            onClick={() => handleSelection(BudgetDiploma)}
             className={`${
-              selectedBudget === Budget ? "bg-[#F89A00] text-white" : "bg-white text-gray-800"
+              selectedBudgetDiploma === BudgetDiploma ? "bg-[#F89A00] text-white" : "bg-white text-gray-800"
             } border border-gray-300 py-2 px-[80px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300`}
           >
-            {Budget}
+            {BudgetDiploma}
           </button>
         ))}
       </div>
       <div className="mt-5 flex gap-2">
-        <Link to={prevPath}>
+        <Link to={'/diplomacourse'}>
           <button className="bg-[#1F618D] text-white border font-bold border-gray-300 py-2 px-[50px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300">
             PREV
           </button>
         </Link>
-        <Link to={nextPath}>
+        <Link to={'/formsub'}>
           <button
             className={`${
               canProceed ? "bg-[#1F618D]" : "bg-gray-400 cursor-not-allowed"
@@ -68,4 +67,4 @@ const Budget = ({ budgetRanges, nextPath = "/emi", prevPath = '/mode' }: BudgetP
   );
 };
 
-export default Budget;
+export default BudgetDiploma;

@@ -1,6 +1,8 @@
 import AdmissionQues10thPage from 'src/pages/main-website/collegefounder/AdmissionQues10thPage'
 import AdmissionQues12thPage from 'src/pages/main-website/collegefounder/AdmissionQues12thPage'
 import AdmissionTakenPage from 'src/pages/main-website/collegefounder/AdmissionTakenPage'
+import Budget10thPage from 'src/pages/main-website/collegefounder/Budget10thPage'
+import BudgetDiplomaPage from 'src/pages/main-website/collegefounder/BudgetDiplomaPage'
 import BudgetPage from 'src/pages/main-website/collegefounder/BudgetPage'
 import CollegeFounderPage from 'src/pages/main-website/collegefounder/CollegeFounderPage'
 import Course10thPage from 'src/pages/main-website/collegefounder/Course10thPage'
@@ -79,6 +81,11 @@ import ThankuPage from 'src/pages/main-website/collegefounder/ThankuPage'
       path:"diplomascore",
       element:DiplomaDegreeScorePage,
     },
+
+    {
+      path:"diplomabudget",
+      element:BudgetDiplomaPage,
+    },
     {
       path:"onlinemode",
       element:OnlineModePage,
@@ -110,6 +117,10 @@ import ThankuPage from 'src/pages/main-website/collegefounder/ThankuPage'
     {
       path:"thanku",
       element:ThankuPage,
+    },
+    {
+      path:"budget10th",
+      element:Budget10thPage,
     },
   ]
 
