@@ -4,7 +4,7 @@ import DiplomaDegreeScore from "src/components/main-website/collegefinder/diplom
 const DiplomaDegreeScorePage = () => {
   return (
     <>
-     <div className='relative py-[120px] overflow-x-hidden'>
+     <div className='relative overflow-x-hidden'>
       <DiplomaDegreeScore/>
      </div>
     </>

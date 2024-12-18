@@ -5,7 +5,7 @@ import DiplomaMode from "src/components/main-website/collegefinder/diplomaholder
 const DiplomaModePage = () => {
   return (
     <>
-     <div className='relative py-[120px] overflow-x-hidden'>
+     <div className='relative py-[60px] overflow-x-hidden'>
       <DiplomaMode/>
      </div>
     </>

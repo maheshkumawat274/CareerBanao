@@ -29,6 +29,7 @@ function Header() {
       <ToastContainer pauseOnHover={false}/>
       {showHomePopup && <HomePopUp/>}
       <NavBar/>
+      {/* <MainHeader/> */}
       <LoginSignUpPopUp modalIsOpen={isLoginSignUpPopUp} closeModal={closeModal}/>
     </div>
   )

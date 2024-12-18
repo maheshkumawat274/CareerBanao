@@ -100,7 +100,7 @@ const NavBar = () => {
     <div className="header relative">
       <div className={navbar ? "navbar navactive flex w-full px-[5rem] py-3 fixed z-[999]" : "navbar flex w-full px-[5rem] py-3 fixed z-[999]"}>
         <div className="navbar-left w-1/3 lg:w-[40%] flex items-center">
-          <div className=" flex gap-2 nav-logo-name text-[32px] font-semibold text-primaryNavText">
+          <div className="flex gap-2 nav-logo-name text-[32px] font-semibold text-primaryNavText">
             <img src="./logo/Untitled design.png" className="h-[50px]"></img>
             <Link className="text-primaryNavText" to={"/"}>
               CareerBanao
@@ -113,8 +113,17 @@ const NavBar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
+            <Link to={'/first'}>
+             <button className="font-semibold px-3 rounded-lg border-2 hover:scale-105 transition-transform transform animate-border-color">
+               College Finder
+             </button>
+
+            </Link>
+
+            </li>
+            <li>
               <Dropdown placement="bottom" menu={{ items: admissonItems }}>
-                <button>Admission</button>
+                <Link to={'/admissions'}><button>Admission</button></Link>
               </Dropdown>
             </li>
             <li>
@@ -246,6 +255,13 @@ function NavSlider({ handleNavSlider, handleLogout, dispatch, user }: any) {
             Home
           </Link>
         </li>
+        <li>
+            <Link to={'/first'}>
+              <button className="bg-orange-500 text-white font-semibold px-4 py-1 rounded-lg shadow-md hover:shadow-lg                  transition-transform transform hover:scale-105 animate-bg-color-change">
+                College Finder
+              </button></Link>
+
+            </li>
         <li>
           <Dropdown placement="bottomRight" menu={{ items: admissonItems }}>
             <button>Admission</button>

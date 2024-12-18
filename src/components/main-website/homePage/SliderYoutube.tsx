@@ -47,9 +47,7 @@ const SliderYoutube: React.FC = () => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     dots: true,
-    customPaging: (_: number) => (
-      <button className="hover:bg-orange-600 transition-colors duration-300"></button>
-    ),
+    
     appendDots: (dots: React.ReactNode) => (
       <div className="mt-4">
         <ul className="flex justify-center">{dots}</ul>

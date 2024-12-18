@@ -4,7 +4,7 @@ import OnlineMode from 'src/components/main-website/collegefinder/graduation/Onl
 const OnlineModePage = () => {
   return (
     <>
-    <div className='relative py-[120px] overflow-x-hidden'>
+    <div className='relative overflow-x-hidden'>
       <OnlineMode/>
      </div>
     </>

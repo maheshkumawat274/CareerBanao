@@ -104,3 +104,6 @@ position: relative;
   }
 }
 
+.slick-dots li {
+  background: none;
+}

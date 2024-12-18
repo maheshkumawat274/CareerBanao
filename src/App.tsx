@@ -14,6 +14,8 @@ import { getCurrentDate, getIPAddress } from "./utils/services";
 import Chatbot from "./components/chatbot/Chatbot";
 import WhatsAppBtn from "./components/whatsappbtn/WhatsAppBtn";
 import CollegeFoundRoutes from "./routes/CollegeFoundRoutes";
+import MainLayoutVideo from "./components/main-website/collegefinder/MainLayoutVideo";
+import ScrollTop from "./components/main-website/collegefinder/ScrollTop";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
@@ -61,6 +63,7 @@ function App() {
     <Loader />
   ) : (
     <MainLayout>
+      <ScrollTop/>
       <Routes>
         {
           mainRoutes.map(({ path, element: Element }, i) => (
@@ -72,11 +75,13 @@ function App() {
             <Route path={path} element={<Protected Component={Element} />} key={i} />
           ))
         }
+        <Route path="/" element={<MainLayoutVideo />}>
         {
           CollegeFoundRoutes.map(({ path, element: Element }, i) => (
             <Route path={path} element={<Element/>} key={i} />
           ))
         }
+        </Route>
       </Routes>
       <Chatbot/>
       <WhatsAppBtn/>

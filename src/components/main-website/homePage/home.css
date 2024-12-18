@@ -56,7 +56,11 @@
   background-color: #454545;
 }
 .slick-dots .slick-active button{ 
-  background-color: black!important;
+  background-color: #454545!important;
+  height: 12px;
+  width: 12px;
+  border-radius: 10px;
+
 }
 .card-container{
     border-radius: .5rem;

@@ -2,7 +2,7 @@ import LevelEducation from 'src/components/main-website/collegefinder/LevelEduca
 const CollegeFounderPage = () => {
   return (
     <>
-    <div className='relative py-[120px] overflow-x-hidden'>
+    <div className='relative overflow-x-hidden'>
       <LevelEducation/>
      </div>
     </>

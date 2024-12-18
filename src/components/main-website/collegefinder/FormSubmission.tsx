@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const FormSubmission = () => {
+const FormSubmission = ({ showHeader = true, showCourse = true, showState = true }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     dob: "",
@@ -38,18 +38,18 @@ const FormSubmission = () => {
     return !Object.values(newErrors).some((error) => error);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (validateForm()) {
-      alert("Form submitted successfully!");
-      console.log(formData);
-    }
-  };
+  const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (validateForm()) {
+        alert("Form submitted successfully!");
+        console.log(formData);
+      }
+    };
 
   return (
     <div className="bg-[#EDEDE9] font-poppins p-10 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-800 mb-6">Just One Step Away From Your Exclusive College List!</h1>
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl mt-5">
+      {showHeader && <h1 className="text-4xl font-bold text-gray-800 mb-6">Just One Step Away From Your Exclusive College List!</h1>}
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-6xl mt-5">
         <div>
           <label className="block text-gray-700 font-bold mb-1">Full Name</label>
           <input
@@ -97,7 +97,7 @@ const FormSubmission = () => {
           />
           {errors.mobileNumber && <p className="text-red-500 text-sm">Enter a valid 10-digit number</p>}
         </div>
-        <div>
+        {showCourse && <div>
           <label className="block text-gray-700 font-bold mb-1">Choose Program</label>
           <input
             type="text"
@@ -108,8 +108,8 @@ const FormSubmission = () => {
             placeholder="Enter your preferred program"
           />
           {errors.program && <p className="text-red-500 text-sm">Program is required</p>}
-        </div>
-        <div>
+        </div>}
+        {showState && <div>
           <label className="block text-gray-700 font-bold mb-1">State</label>
           <select
             name="state"
@@ -148,21 +148,24 @@ const FormSubmission = () => {
             <option value="west-bengal">West Bengal</option>
           </select>
           {errors.state && <p className="text-red-500 text-sm">State selection is required</p>}
-        </div>
-        <div className="mt-5 flex gap-2">
-          <Link to={'/first'}>
-            <button className="bg-[#1F618D] text-white border font-bold border-gray-300 py-2 px-[50px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300">
-              PREV
-            </button>
-          </Link>
-          <button
-            type="submit"
-            className="bg-[#1F618D] text-white border font-bold border-gray-300 py-2 px-[50px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300"
-          >
-            Submit
-          </button>
-        </div>
+        </div>}
+        
       </form>
+         <div className="mt-5 flex gap-2">
+           <Link to={'/first'}>
+             <button className="bg-[#1F618D] text-white border font-bold border-gray-300 py-2 px-[50px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300">
+               PREV
+             </button>
+           </Link>
+           <button
+             type="submit"
+             onClick={handleSubmit} 
+             className="bg-[#1F618D] text-white border font-bold border-gray-300 py-2 px-[50px] rounded-lg hover:bg-[#F89A00] hover:text-white transition duration-300"
+           >
+             Submit
+           </button>
+         </div>
+      
     </div>
   );
 };

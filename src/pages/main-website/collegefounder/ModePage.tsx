@@ -4,7 +4,7 @@ import ModeDegree from "src/components/main-website/collegefinder/graduation/Mod
 const ModePage = () => {
   return (
     <>
-     <div className='relative py-[120px] overflow-x-hidden'>
+     <div className='relative overflow-x-hidden'>
       <ModeDegree/>
      </div>
     </>

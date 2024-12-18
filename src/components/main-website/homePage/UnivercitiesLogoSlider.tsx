@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import './carousel.css'
 interface CardProps {
   logoUrl: string; // Assuming the logo is an image
 }
@@ -41,9 +41,7 @@ const UnivercitiesLogoSlider: React.FC = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     dots: true,
-    customPaging: (_: number) => (
-          <button className="hover:bg-orange-600 transition-colors duration-300"></button>
-        ),
+    
         appendDots: (dots: React.ReactNode) => (
           <div className="mt-4">
             <ul className="flex justify-center">{dots}</ul>

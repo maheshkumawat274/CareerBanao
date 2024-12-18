@@ -4,7 +4,7 @@ import DegreeScore from "src/components/main-website/collegefinder/graduation/De
 const DegreeScorePage = () => {
   return (
     <>
-     <div className='relative py-[120px] overflow-x-hidden'>
+     <div className='relative overflow-x-hidden'>
       <DegreeScore/>
      </div>
     </>

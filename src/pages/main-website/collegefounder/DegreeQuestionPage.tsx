@@ -4,7 +4,7 @@ import DegreeQuestion from "src/components/main-website/collegefinder/graduation
 const DegreeQuestionPage = () => {
   return (
     <>
-     <div className='relative py-[120px] overflow-x-hidden'>
+     <div className='relative overflow-x-hidden'>
       <DegreeQuestion/>
      </div>
     </>

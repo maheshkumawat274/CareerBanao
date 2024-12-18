@@ -3,7 +3,7 @@ import BudgetDiploma from 'src/components/main-website/collegefinder/diplomahold
 const BudgetDiplomaPage = () => {
   return (
     <>
-    <div className='relative py-[120px] overflow-x-hidden'>
+    <div className='relative overflow-x-hidden'>
       <BudgetDiploma/>
      </div>
     </>

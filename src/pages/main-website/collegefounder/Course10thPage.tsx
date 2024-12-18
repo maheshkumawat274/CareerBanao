@@ -4,7 +4,7 @@ import Course10th from 'src/components/main-website/collegefinder/10th/Course10t
 const Course10thPage = () => {
   return (
     <>
-    <div className='relative py-[120px] overflow-x-hidden'>
+    <div className='relative overflow-x-hidden'>
       <Course10th/>
      </div>
     </>

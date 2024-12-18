@@ -4,7 +4,7 @@ import RegularMode from 'src/components/main-website/collegefinder/graduation/Re
 const RegularModePage = () => {
   return (
     <>
-    <div className='relative py-[120px] overflow-x-hidden'>
+    <div className='relative overflow-x-hidden'>
       <RegularMode/>
      </div>
     </>
